@@ -26,13 +26,9 @@ func main() {
 		fmt.Printf("Character on position %d is: %c \n", ix, str1[ix])
 	}
 
-	for iy := 1; iy < 25; iy++ {
-		fmt.Printf("demo")
-		var str2 = ""
-		var str3 string = ""
-		for jy := 1; jy < iy; jy++ {
-			str3 = str2 + "G"
+	for i := 1; i <= 25; i++ {
+		for j := 1; j <= i; j++ {
+			fmt.Println("G")
 		}
-		fmt.Printf("%f\n", str3)
 	}
 }
