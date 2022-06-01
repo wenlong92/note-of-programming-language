@@ -26,9 +26,51 @@ func main() {
 		fmt.Printf("Character on position %d is: %c \n", ix, str1[ix])
 	}
 
-	for i := 1; i <= 25; i++ {
-		for j := 1; j <= i; j++ {
-			fmt.Println("G")
-		}
+	// for i := 1; i <= 25; i++ {
+	// 	for j := 1; j <= i; j++ {
+	// 		print("G")
+	// 	}
+	// 	println()
+	// }
+
+
+	// for结构第二种形式是没有头部的条件判断迭代
+	var int2 int = 5
+	for int2 >= 0 {
+		int2 = int2 -1
+		fmt.Printf("The variable int2 is now: %d\n", int2)
+	}
+
+	// for-range结构 Go特有的迭代结构  可以迭代任何一个集合(包括数组和map)
+	// 类似其他语言的foreach语句
+
+	str5 := "Go is a beautiful language!"
+	for pos, char := range str5 {
+		fmt.Printf("Character on position %d is: %c \n", pos, char)
+	}
+
+	for i := 0; i < 5; i++ {
+		var v int
+		fmt.Printf("%d ", v)
+		v = 5
+	}
+
+	// for i := 0; ; i++ {
+	// 	fmt.Println("Value of i is now:", i)
+	// }
+
+	// for i := 0; i < 3; {
+	// 	fmt.Println("Value of i:", i)
+	// }
+
+	s := ""
+	for ; s != "aaaaa"; {
+		fmt.Println("Value of s:", s)
+		s = s + "a"
+	}
+
+	for i, j, s := 0, 5, "a"; i < 3 && j < 100 && s != "aaaaa"; i, j,
+		s = i+1, j+1, s + "a" {
+		fmt.Println("Value of i, j, s:", i, j, s)
 	}
 }
