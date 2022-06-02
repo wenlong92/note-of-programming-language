@@ -18,6 +18,20 @@ func main() {
 	// 切片(slice)，字典(map)、接口(interface)、通道(channel)这样的引用类型都是默认使用引用传递
 	demo1(1, 2)
 	MySqrt(2.8)
+
+	// 空白符，用来匹配一些不需要的值，然后丢弃掉
+	var i1 int
+	var f1 float32
+	i1, _, f1 = ThreeValues()
+	fmt.Printf("The int: %d, the float: %f \n", i1, f1)
+
+	// 传递指针给函数不仅可以节省内存，而且赋予了函数直接修改外部变量的能力
+	// 所以被修改的变量不再需要使用return返回
+	n1 := 0
+	reply := &n1
+	Multiply(10, 5, reply)
+	fmt.Println("Multiply:",*reply)
+
 }
 
 func demo1(num1, num2 int) (num3, num4, num5 int) {
@@ -33,4 +47,12 @@ func MySqrt(num1 float64) (float64, error) {
 		return float64(math.NaN()), errors.New("I won't be able to do a sqrt of negative number!")
 	}
 	return math.Sqrt(num1), nil
+}
+
+func ThreeValues() (int, int, float32) {
+	return 5, 6, 7.5
+}
+
+func Multiply(a, b int, reply *int) {
+	*reply = a * b
 }
