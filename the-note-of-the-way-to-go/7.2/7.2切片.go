@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 )
 
@@ -98,6 +99,55 @@ func main() {
 	// new(T)为每个新的类型T分配一片内存，初始化为0并返回类型为*T的内存地址
 	// 这种方法返回一个指向类型为T，值为0的地址的指针，适用于值类型如数组和结构体；相当于 &T{}
 	// make(T)返回一个类型为T的初始值，只适用于3中内建的引用类型：切片、map和channel
+	s := make([]byte, 5)
+	fmt.Printf("len(s)",len(s),"\n")
+	fmt.Printf("cap(s)",cap(s),"\n")
+	fmt.Printf("2-4 len(s)",len(s[2:4]),"\n")
+	fmt.Printf("2-4 cap(s)",cap(s[2:4]),"\n")
+
+	s1 := []byte{'p', 'o', 'e', 'm'}
+	s2 := s1[2:]
+	fmt.Printf("s1:",s1,"\n")
+	fmt.Printf("s2:",s2,"\n")
+	s2[1] = 't'
+	fmt.Printf("s1:",s1,"\n")
+	fmt.Printf("s2:",s2,"\n")
+
+	// 理解new、make、slice、map、channel的关系
+	// 1.slice、map、channel都是golang内建的一种引用类型，三者在内存中存在多个组成部分
+	// 需要对内存组成部分初始化后才能使用，而make就是对三者进行初始化的一种操作方式
+	// 2.new获取的是存储指定变量内存地址的一个变量，对于变量内部结构并不会执行相应的初始化操作
+	// 所以slice、map、channel需要make进行初始化并获取对应的内存地址，而非new简单的获取内存地址
+
+	// 7.2.5多维切片
+	// 与数组一样，切片也可以由一维组合成高维。
+	// 通过分片的分片(或者切片的数组)，长度可以任意动态变化，所以Go语言的多维切片可以任意切分
+	// 且内层的切片必须单独分配(通过make函数)
+
+	// 7.2.6bytes包
+	// 类型[]byte的切片十分常见，Go语言有一个bytes包专门用来提供这种类型的操作方法
+
+	// bytes包和字符串包十分类似(4.7节)。它还包含一个十分有用的类型Buffer,例如
+	// import "bytes"
+	// type Buffer struct { ... }
+	// 这是一个长度可变的bytes的buffer，提供Read和Write方法，因为读写长度未知的bytes最好使用buffer
+
+	// Buffer定义：var buffer bytes.Buffer
+	// 或使用new获得一个指针: var r *bytes.Buffer = new(bytes.Buffer)
+	// 或通过函数: func NewBuffer(buf []byte) *Buffer  创建一个Buffer对象并用buf初始化，NewBuffer最好用在从buf读取的时候使用
+
+	// 通过buffer串联字符串，类似Java的StringBuilder类
+	// 下例中，创建一个buffer，通过buffer.WriteString(s)方法将字符串s追加到后面，再通过buffer.String()方法转为string
+	var buffer bytes.Buffer
+	for {
+		if s, ok := getNextString(); ok {   //getNextString方法暂未展示
+			buffer.WriteString(s)
+		} else {
+			break
+		}
+	}
+	fmt.Print(buffer.String(), "\n")
+	// 这种实现方式比使用 += 更节省内存和CPU，尤其是要串联的字符串数目很多时。
 }
 func sum(a []int) int {
 	s := 0
