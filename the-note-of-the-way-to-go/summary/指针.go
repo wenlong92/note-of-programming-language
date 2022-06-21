@@ -28,4 +28,52 @@ func main() {
 	var ptr *int
 	fmt.Printf("ptr 的值为：%x\n", ptr)
 
+
+	// Go语言指针数组
+	// 先定义一个长度为3的整型数组
+	const MAX int = 3
+	a2 := []int{10, 100, 200}
+	var i int
+	for i = 0; i < MAX; i++ {
+		fmt.Printf("a2[%d] = %d\n", i, a2[i])
+	}
+	// 如果需要保存数组，需要用到指针
+	var ptr1 [MAX]*int
+	for i = 0; i < MAX; i++ {
+		ptr1[i] = &a2[i]
+	}
+	for i = 0; i < MAX; i++ {
+		fmt.Printf("a2[%d] = %d\n", i, *ptr1[i])
+	}
+
+
+	// Go语言指向指针的指针
+	// 如果一个指针变量存放的又是另一个指针变量的地址，称这个指针变量为指向指针的指针，声明格式如下：
+	// var ptr2 **int
+
+	var a3 int
+	var pptr **int
+	var ptr3 *int
+
+	a3 = 1000
+	ptr3 = & a3
+	pptr = &ptr3
+	fmt.Printf("变量 a3 = %d\n", a3)
+	fmt.Printf("指针变量 *ptr3 = %d\n", *ptr3)
+	fmt.Printf("指向指针的指针变量 **pptr = %d\n", **pptr)
+
+
+	// Go语言指针作为函数参数
+	// 只需要在函数定义的参数上设置为指针类型即可
+	demo1 := 100
+	demo2 := 200
+	swap(&demo1, &demo2)
+	fmt.Printf("交换后的demo1:%d\n",demo1)
+	fmt.Printf("交换后的demo2:%d\n",demo2)
+}
+
+func swap(x, y *int) {
+	temp := *x
+	*x = *y
+	*y = temp
 }
