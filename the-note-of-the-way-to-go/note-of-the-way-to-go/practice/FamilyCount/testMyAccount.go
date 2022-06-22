@@ -17,6 +17,8 @@ func main() {
 	var money float64
 	// 说明
 	var note string
+	// 标记收支记录
+	flag := false
 
 	for {
 		fmt.Println("\n----------家庭收支记账软件----------")
@@ -30,7 +32,12 @@ func main() {
 	
 		switch key {
 			case "1":
-				fmt.Println(details)
+				if flag {
+					fmt.Println("----------当前收支明细记录----------")
+					fmt.Println(details)
+				} else {
+					fmt.Println("当前还没有收支记录，来记录一笔吧")
+				}
 			case "2":
 				fmt.Println("收入金额：")
 				fmt.Scanln(&money)
@@ -38,6 +45,7 @@ func main() {
 				fmt.Scanln(&note)
 				balance += money
 				details += fmt.Sprintf("\n收入\t%v\t%v\t%v", balance, money, note)
+				flag = true
 			case "3":
 				fmt.Println("支出金额：")
 				fmt.Scanln(&money)
@@ -49,6 +57,7 @@ func main() {
 				fmt.Scanln(&note)
 				balance -= money
 				details += fmt.Sprintf("\n支出\t%v\t%v\t%v", balance, money, note)
+				flag = true
 			case "4":
 				fmt.Println("确定要退出软件吗？Y/N")
 				quit := ""
