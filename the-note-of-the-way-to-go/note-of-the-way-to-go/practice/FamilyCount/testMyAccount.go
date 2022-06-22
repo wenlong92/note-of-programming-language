@@ -50,8 +50,19 @@ func main() {
 				balance -= money
 				details += fmt.Sprintf("\n支出\t%v\t%v\t%v", balance, money, note)
 			case "4":
-				fmt.Println("已退出软件")
-				loop = false
+				fmt.Println("确定要退出软件吗？Y/N")
+				quit := ""
+				for {
+					fmt.Scanln(&quit)
+					if quit == "Y" || quit == "N" {
+						break
+					}
+					fmt.Println("你的输入有误，请重新输入 Y/N")
+				}
+				if quit == "Y" {
+					fmt.Println("已退出软件")
+					loop = false
+				}
 			default:
 				fmt.Println("输入错误，请输入正确的选项")
 		}
