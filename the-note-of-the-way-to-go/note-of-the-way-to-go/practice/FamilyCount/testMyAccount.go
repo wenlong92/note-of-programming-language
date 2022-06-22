@@ -39,7 +39,16 @@ func main() {
 				balance += money
 				details += fmt.Sprintf("\n收入\t%v\t%v\t%v", balance, money, note)
 			case "3":
-				fmt.Println("已选择登记支出")
+				fmt.Println("支出金额：")
+				fmt.Scanln(&money)
+				if money > balance {
+					fmt.Println("余额中的金额不足")
+					break
+				}
+				fmt.Println("支出说明：")
+				fmt.Scanln(&note)
+				balance -= money
+				details += fmt.Sprintf("\n支出\t%v\t%v\t%v", balance, money, note)
 			case "4":
 				fmt.Println("已退出软件")
 				loop = false
