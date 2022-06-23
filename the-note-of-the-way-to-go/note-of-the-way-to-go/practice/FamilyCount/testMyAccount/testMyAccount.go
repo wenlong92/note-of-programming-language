@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-
+	// 面向过程的实现方式
 	key := ""
 	loop := true
 
