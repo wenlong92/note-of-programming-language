@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 新元素被添加的的位置与原数组末端之间存在一定间隔，那么之间的元素值会被设定为undefined
+    var a = [1, 2, 3]
+    a[6] = "new"
+    console.log("a:",a)
+    console.log(a[5])
+
+    // 相关元素被删除后，数组长度不变
+    var b = [1, 2, 3]
+    delete b[0]
+    console.log(b.length)
+    console.log("b:",b)
+</script>
+</html>

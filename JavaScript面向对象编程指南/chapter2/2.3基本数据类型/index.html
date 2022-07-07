@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>JavaScript中数据类型分为基本数据类型和非基本数据类型（对象）</div>
+    <div>基本数据类型：</div>
+    <ul>
+        <li>数字</li>
+        <li>字符串</li>
+        <li>null：通常指没有值或空值</li>
+        <li>undefined：访问不存在变量或已声明却为赋值的变量</li>
+        <li>布尔</li>
+    </ul>
+</body>
+<script>
+    // 查看类型操作符
+    console.log(typeof 1)
+
+    // 当字符串用于算术运算中，字符串会被当做数字来处理
+    const string1 = "2"
+    let num1 = 3 * string1
+    console.log("num1:", num1) //结果为6
+    // 所以字符串转换为数字时，可以使用这种偷懒的方法，将字符串与数字1相乘
+    // 更好的选择是parseInt()函数
+
+    // 将其他类型转换为字符串时，也可使用这种偷懒方法
+    let num2 = 2
+    let string2 = num2 + ""
+    console.log(typeof string2)
+
+    // 特殊的字符串：转义符/换行符/回车符/制表符/转Unicode码符等等
+
+    // 布尔类型中只有两种值：true和false
+    // 有三种逻辑运算符，属于布尔运算
+    // 或||、与&&、非!
+
+    // 对于非布尔值，下面个五特殊的值转换为布尔值时为false
+    // 空字符串""、null、undefined、NaN、数字0
+
+    // 逻辑运算符优先级：非! > 与&& > 或||
+
+
+    // 比较运算符：==、===、!=、!==、>=、>、<=、<
+    // NaN不等于任何值，包括自己
+
+    // null和undefined
+    // undefined可以由JavaScript自动赋值，但null只能由我们赋值
+</script>
+</html>

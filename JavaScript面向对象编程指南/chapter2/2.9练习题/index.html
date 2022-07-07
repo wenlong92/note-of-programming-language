@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a; console.log(typeof a)
+
+        var s = "ls"; console.log(s++) // NaN
+
+        console.log(!!"false")
+
+        console.log(!!undefined)
+
+        console.log(typeof -Infinity)
+
+        console.log(10 % "0")
+
+        console.log(undefined == null)
+
+        console.log(false === "")
+
+        console.log(typeof "2E+2")
+
+        b = 3e+3; console.log(b++)  //++b与b++结果不同
+
+        var v = v || 10
+        console.log("V:",v)
+
+        let v1 = 100
+        v1 = v1 || 10
+        console.log("v1:",v1)
+
+        let v2 = 0
+        v2 = v2 || 10
+        console.log("v2:",v2)
+
+        let v3 = null
+        v3 = v3 || 10
+        console.log("v3:",v3)
+    </script>
+</body>
+</html>
