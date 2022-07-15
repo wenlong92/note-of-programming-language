@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"../service"
+	"../model"
 )
 
 type customerView struct {
@@ -24,6 +25,40 @@ func (this *customerView) list() {
 	fmt.Println("----------客户列表完成----------\n\n")
 }
 
+// 得到用户输入，信息构建新的客户，并添加
+func (this *customerView) add() {
+	fmt.Println("------------添加客户------------")
+
+	fmt.Println("姓名：")
+	name := ""
+	fmt.Scanln(&name)
+
+	fmt.Println("性别：")
+	gender := ""
+	fmt.Scanln(&gender)
+
+	fmt.Println("年龄：")
+	var age int
+	fmt.Scanln(&age)
+
+	fmt.Println("电话：")
+	phone := ""
+	fmt.Scanln(&phone)
+
+	fmt.Println("邮箱：")
+	email := ""
+	fmt.Scanln(&email)
+
+    // 构建一个新的Customer实例，ID号没有让用户输入，id唯一，需要系统分配
+	customer := model.NewCustomer2(name, gender, age, phone, email)
+	// 调用
+	if this.customerService.Add(customer) {
+		fmt.Println("----------添加完成----------\n")
+	} else {
+		fmt.Println("----------添加失败----------")
+	}
+}
+
 // 显示主菜单
 func (this *customerView) mainMenu() {
 	for {
@@ -39,7 +74,7 @@ func (this *customerView) mainMenu() {
 		
 		switch this.key {
 			case "1":
-				fmt.Println("1")
+				this.add()
 			case "2":
 				fmt.Println("2")
 			case "3":
