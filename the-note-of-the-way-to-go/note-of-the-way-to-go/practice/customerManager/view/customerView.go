@@ -2,11 +2,26 @@ package main
 
 import (
 	"fmt"
+	"../service"
 )
 
 type customerView struct {
-	key string  // 接收用户输入
-	loop bool   // 表示是否循环显示主菜单
+	key             string  // 接收用户输入
+	loop            bool    // 表示是否循环显示主菜单
+	customerService *service.CustomerService
+}
+
+// 显示所有客户信息
+func (this *customerView) list() {
+	// 获取当前所有客户信息(在切片中)
+	customers := this.customerService.List()
+	// 显示
+	fmt.Println("------------客户列表------------")
+	fmt.Println("编号\t姓名\t性别\t年龄\t电话\t邮箱")
+	for i := 0; i < len(customers); i++ {
+		fmt.Println(customers[i].GetInfo())
+	}
+	fmt.Println("----------客户列表完成----------\n\n")
 }
 
 // 显示主菜单
@@ -30,7 +45,7 @@ func (this *customerView) mainMenu() {
 			case "3":
 				fmt.Println("3")
 			case "4":
-				fmt.Println("4")
+				 this.list()
 			case "5":
 				this.loop = false
 			default:
@@ -49,6 +64,7 @@ func main() {
 		key: "",
 		loop: true,
 	}
+	customerView.customerService = service.NewCustomerService()
 	customerView.mainMenu()
 
 }
