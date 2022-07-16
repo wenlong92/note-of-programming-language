@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log(parseInt(1e1))
+    console.log(parseInt("1e1"))
+    console.log(parseFloat("1e1"))
+    console.log(isFinite(0/20))
+    console.log(isFinite(20/0))
+    console.log(isNaN(parseInt(NaN)))
+
+    var a = 1;
+    function f() {
+      function n() {
+        alert(a)
+      }
+      var a = 2;
+      n()
+    }
+    f()
+
+  </script>
+</body>
+</html>

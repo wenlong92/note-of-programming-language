@@ -10,6 +10,8 @@
 
 <body>
     <script>
+        // 阮一峰的闭包博客：http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html
+
         // 3.5.1作用域链
         var global = 1;
         function outer() {
@@ -40,6 +42,54 @@
         // add();
         // add();
         // add();
+
+        // 每个函数本身就是一个闭包，因为每个函数至少都有访问全局作用域的权限，而全局作用域是不会被破坏的。
+        function F1() {
+          function binder(x) {
+            return function() {
+              return x
+            }
+          }
+          var arr = [], i;
+          for(i = 0; i < 3; i++) {
+            arr[i] = binder(i)
+          }
+          return arr
+        }
+        console.log(typeof F1())
+        const obj = F1()
+        console.log(obj[0]())
+
+        // 3.5.3 getter与setter
+        var getValue, setValue
+        (function() {
+          var secret = 0;
+          getValue = function() {
+            return secret
+          }
+
+          setValue = function(v) {
+            if(typeof v === "number") {
+              secret = v;
+            }
+          }
+        }())
+        console.log(getValue())
+        setValue(100)
+        console.log(getValue())
+
+        // 3.5.4 迭代器
+        function setup(x) {
+          let i = 0;
+          return function() {
+            return x[i++]
+          }
+        }
+        const next = setup(["a", "b", "c"])
+        // 只需要重复调用一个函数，就可以不停地获取下一个元素
+        console.log(next())
+        console.log(next())
+        console.log(next())
 
     </script>
 </body>
