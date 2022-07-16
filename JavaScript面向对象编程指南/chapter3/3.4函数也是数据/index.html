@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 3.4.3回调示例
+        function addOne(a) {
+            return a + 1
+        }
+        function multiplyByTwo(a, b, c, callback) {
+            var i, arr = [];
+            for(i = 0; i < 3; i++) {
+                arr[i] = callback(arguments[i] * 2)
+            }
+            return arr
+        }
+        let demo = multiplyByTwo(1, 2, 3, addOne)
+        console.log("demo:", demo)
+        
+
+        // 3.4.7能重写自己的函数
+        let a1 = (function() {
+            function someSetup() {
+                let setup = "done"
+            }
+            function actualWork() {
+                alert("Worky-worky")
+            }
+            someSetup();
+            return actualWork;
+        }())
+        a1()
+        a1()
+    </script>
+</body>
+</html>

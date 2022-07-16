@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 3.5.1作用域链
+        var global = 1;
+        function outer() {
+            var outer_local = 2;
+            function inner() {
+                var inner_local = 3
+                return inner_local + outer_local + global;
+            }
+            return inner()
+        }
+        console.log(outer())
+
+        function F(param) {
+            var N = function () {
+                return param;
+            }
+            param++;
+            return N;
+        }
+        var inner = F(123)
+        console.log(inner())
+
+        var add = (function () {
+            var counter = 0;
+            return function () { return counter += 1; }
+        })();
+
+        // add();
+        // add();
+        // add();
+
+    </script>
+</body>
+
+</html>
