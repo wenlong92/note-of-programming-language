@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 目前为止所使用的实际上都是Object()构造器函数，它会在我们使用对象文本标识法或访问相关构造器属性时返回新建的对象。
+    // 而Object()也只是JavaScript中众多内建构造器之一
+
+    // 内建构造器大致分为三组：
+    // 1.数据封装类对象：包括Object、Array、Boolean、Number和String。这些对象代表着JavaScript中不同的数据类型，各自拥有不同的typeof返回值
+    // 2.工具类对象：包括Math、Date、RegExp等用于提供遍历的对象
+    // 3.错误类对象：包括一般性错误对象以及其他各种更特殊的错误类对象
+
+    // 4.2.1 Object
+    // Object是JavaScript中所有对象的父级对象，这意味着我们创建的所有对象都继承于此。
+    // 新建一个空对象，既可以用对象文本标识法也可以用Object()构造器函数
+    // 二者是等价的，例如：
+    var o = {}
+    var o = new Object()
+
+    // 空对象并非完全无用，还是包含了一些方法和属性的，例如：
+    // 1.返回构造器函数的构造器属性
+    // 2.返回对象描述字符串的toString()方法
+    // 3.返回对象单值描述信息的valueof()方法
+    // 一般情况下，返回的就是对象本身
+    var o1 = new Object()
+    console.log(o1.toString())
+
+    // toString()方法会在某些需要用字符串来表示对象的时候被JavaScript内部调用，例如alert()
+    // 当我们将对象传递给一个alert()函数，toString()方法会在后台被调用，也就是说，下面两行代码执行结果相同：
+    // alert(o1)
+    // alert(o1.toString())
+    // 另一种会使用字符串描述文本的地方是字符串连接操作，如果将某个字符串与对象进行连接，那么该对象就先调用自身的toString()方法
+    console.log("An object: " + o1)
+
+    // valueOf()方法也是一个所有对象所共有的方法，对于简单的对象来说(即构造器是Object的对象)，valueOf()方法返回的就是对象自己
+    console.log(o1.valueOf() === o1)
+
+
+    // 4.2.2 Array
+    // Array()是一个用来构建数组的内建构造器函数，与数组文本标识法等效，例如：
+    var a = new Array()
+    var a = []
+    // 使用Array()构造器创建新数组时，也可通过传值的方式为其设定元素
+    var a1 = new Array(1, 2, 3, 'four')
+    console.log("a1: ", a1)
+    // 但如果传递的是一个数字，会被认为是数组的长度
+    var a2 = new Array(5)
+    console.log("a2: ", a2)
+    // 数组实际上是一个对象
+    console.log(typeof a1)
+    // 也就是说数组继承了Object的所有方法和属性
+    console.log(a1.toString())
+    console.log(a1.valueOf())
+    console.log(a1.constructor)
+    // 数组虽然也是对象，但有些特殊之处
+    // 1.属性名都是从0开始递增，并自动生成数值
+    // 2.都拥有一个用于记录数组中元素数量的length属性
+    // 3.都是在父级对象的基础上扩展额外的内建方法
+    // 下面验证对象和数组之间的区别
+    var arr = [], obj = {}
+    console.log(arr.length)  // 0
+    console.log(obj.length)  // undefined
+    // length属性通常会随着数字属性的数量更新，非数字属性会被忽略
+    arr[0] = 1; obj[0] = 1
+    arr.prop = 2; obj.prop = 2
+    console.log(arr.length)  // 长度为1
+    // 可以手动设置length属性，设置的值大于当前数组中元素数量，多出部分会被空对象所填充(值为undefined)
+    arr.length = 5
+    console.log("arr: ", arr)
+    // 若设置的length值小于当前元素数，多出部分会被移除
+    arr.length = 2
+    console.log("arr: ", arr)
+    // 数组的方法
+    // push()返回的是改编后的数组长度，pop()返回的是被移除的元素，sort()返回的是排序后的数组
+    // join()方法返回一个由目标数组中所有元素值连接而成的字符串，还可以通过该方法的参数来设定这些元素之间的字符串
+    var arr1 = [1, 3, 5, 7, "test"]
+    console.log(arr1.join(" is not"))
+    // slice()方法在不修改目标数组的情况下返回其中的某个片段
+    console.log(arr1.slice(1, 3))
+    // splice()会修改目标数组。它会移除并返回指定切片，并在可选情况下，还会用指定的新元素填补被切除的空缺
+    var b = arr1.splice(1, 2, 100, 101, 102)
+    console.log("arr1: ", arr1)
+    // splice()用于填补空缺的新元素是可选的，可以直接跳过
+    console.log(arr1.splice(1, 3))
+    console.log("arr1: ", arr1)
+
+    // 4.2.3 Function
+    // 函数实际上是一种对象。函数对象的内建构造器是Function()，可以将它作为创建函数的一种备选方式(并不推荐)
+    // 以下三种定义函数的方式是等效的：
+    function sum1(a, b) {return a + b}
+    var sum2 = function(a, b) { return a + b }
+    var sum3 = new Function("a", "b", "return a + b")
+    console.log(sum3(1, 2))
+    // 如果使用Function()构造器，就必须通过其参数来设定函数的参数名和函数体中的代码。JavaScript引擎自会对这些源代码进行解析，然后直接创建新函数
+    // 这会带来与eval()相似的缺点，因此尽量避免使用Function()构造器来定义函数
+
+    // 4.2.3.1 Function对象的属性
+    // 与其他对象不同，函数对象中含有一个构造器属性，其引用的就是Function()构造器函数
+    function myfunc(a) {return a;}
+    console.log(myfunc.constructor)
+    // Function对象中也有一个length属性，用于记录该函数所拥有的参数数量
+    function myfunc1(a, b) {return true}
+    console.log(myfunc1.length)
+    // caller属性，这个属性会返回一个调用该函数对象的外层函数引用
+    // 就是说，如果在函数B中调用函数A，那么只要在A中调用了A.caller，结果就会返回函数B
+    function A() {return A.caller}
+    function B() {return A()}
+    console.log("B: ", B())
+    // 如果我们希望函数能根据其调用函数做出不同的反映，该属性会非常有用。如果是在全局域调用A函数(也就是说没有任何外层函数)，A.caller的值为null
+    // prototype属性
+    // 1.每个函数的prototype属性中都包含了一个对象
+    // 2.只有在该函数是构造器时才会发挥作用
+    // 3.该函数创建的所有对象都会持有一个该prototype属性的引用，并可以将其当做自身的属性来使用
+    // 下面演示prototype属性的使用
+    var some_obj = {
+      name: "Ninja",
+      say: function() {
+        return "I am a " + this.name
+      }
+    }
+    function F() {}  // 这里创建一个空函数，该函数的prototype属性是一个空对象
+    console.log(typeof F.prototype)
+    // 修改F()的prototype属性
+    F.prototype = some_obj
+    console.log(typeof F.prototype)
+    // 现在如果将F()当做一个构造器函数来创建对象，新对象obj就会拥有对F.prototype属性的访问权
+    var obj1 = new F()
+    console.log(obj1.name)
+    console.log(obj1.say())
+
+    // 4.2.3.2 Function对象的方法
+    // 所有的Function对象都是继承自父级对象Object，因此默认就拥有其父级对象的所有方法。例如toString()
+    function myfunc2(a, b, c) { return a + b + c }
+    console.log(myfunc2.toString())  // 会得到该函数的源代码
+    // 但如果想用这种方式查看内建函数源码的话，只会得到无用的字符串
+    console.log(eval.toString())
+    // 函数中还有两个有用的方法call()和apply()。通过这两个方法，能让对象借用其他对象中的方法，为己所用。这也是一种重用代码的方式，简单实用
+    var some_obj1 = {
+      name: "Ninja",
+      say: function(who) {
+        return "Haya " + who + ", I am a " + this.name
+      }
+    }
+    my_obj = { name: "Scripting guru" }
+    console.log(some_obj1.say.call(my_obj, "Dude"))
+    // apply()工作方式与call()基本相同，唯一不同之处在于参数的传递形式，这里目标函数所需要的参数都是通过一个数组来传递
+    console.log(some_obj1.say.apply(my_obj, ["Dude"]))
+    // 当say()被调用时，其中的this自动设置成了my_obj对象的引用(实际上就是通过call或apply的首参数修改了对象函数的this值)
+    // 没有将对象传递给call或apply的首参数，或者传递的是null，调用的对象将会被默认为全局对象
+
+    // 4.2.3.3 重新认识arguments对象
+    // 第三章中，函数通过arguments来访问传递给该函数的所有参数，例如：
+    function f() {return arguments}
+    console.log(f(1, 2, 3))
+    // arguments看上去像是一个数组，实际上是一个类似数组的对象，相似之处在于其中也包含索引元素和length属性。
+    // 另外arguments对象中还有一个callee属性，该属性引用的是当前被调用的函数对象，就是说，如果所建函数的返回值是arguments.callee，那么该函数被调用时会返回自身的引用
+    function f1() { return arguments.callee }
+    f1()
+    // 所以可以通过arguments.callee属性来实现匿名函数的递归调用
+    function f2(count) {
+      if (count < 5) {
+        alert(count);
+        arguments.callee(++count)
+      }
+    }
+    f2(1)
+
+    // 4.2.4 Boolean
+    
+
+  </script>
+</body>
+</html>
