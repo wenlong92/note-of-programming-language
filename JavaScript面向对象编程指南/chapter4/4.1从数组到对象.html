@@ -7,7 +7,118 @@
 </head>
 <body>
   <script>
+    // 4.1.2 哈希表、关联型数组
+    // 在一些程序设计语言中，通常存在着两种不同的数组形式
+    // 1.一般性数组(索引型数组或枚举型数组)：通常以数字为键名
+    // 2.关联型数组(哈希表或字典)：通常以字符串为键值
+
+    // JavaScript中，数组来表示索引型数组，对象表示关联型数组。
+
+
+    // 4.1.6 使用this值
+    // 处于某个对象的方法内部时，可以用this访问同一对象的属性
+    const hero = {
+      name: "Rafaelo",
+      sayName: function() {
+        return this.name
+      }
+    }
+    hero.sayName()
+
+
+    // 4.1.7 构造器函数
+    // 还可以通过构造器函数的方式创建对象,依照惯例，构造器函数首字母大写
+    function Hero() {
+      this.occupation = "Ninja"
+    }
+    // 为了能使用该函数创建对象，需要使用new操作符
+    const hero1 = new Hero()
+    hero1.occupation
+
+    // 使用构造器好处之一是：可以在创建对象的时候接收一些参数
+    function Hero1(name) {
+      this.name = name;
+      this.occupation = "Ninja"
+      this.whoAreYou = function() {
+        return "I'm " + this.name + " and I'm a " + this.occupation
+      }
+    }
+    // 这样就可以利用同一个构造器创建不同的对象
+    const h1 = new Hero1("Michelangelo")
+    const h2 = new Hero1("Donatello")
+    h1.whoAreYou()
+    h2.whoAreYou()
+
+
+    // 4.1.8 全局对象
+    // 程序所在的宿主环境一般都会为其提供一个全局对象，而所谓的全局变量其实都只不过是该对象的属性
+    // 例如当程序所在的宿主环境是web浏览器时，所提供的的全局对象就是window。
+    // 另一个获取全局对象的方法是在构造器函数之外使用this关键字
+
+    // 具体示例：
+    var a = 1;
+    // 1.当做变量的方式，来访问a
+    // 2.当做全局对象的一个属性访问a
+    window['a']
+    window.a
+    // 3.通过this所指向的全局对象属性访问a
+    this.a
+
+
+    // 4.1.9 构造器属性
+    // 创建对象的同时也赋予了该对象一种特殊的属性——构造器属性
+    // 该属性实际上是一个指向用于创建该对象的构造器函数的引用
+    // 继续引用前面的例子：
+    console.log(h2.constructor)
+
+    // 构造器属性所引用的是一个函数，因此也可以利用它来创建一个其他新对象
+    const h3 = new h2.constructor("Rafaello")
+    console.log(h3.name)
+
+    // 如果对象通过对象文本标识法创建，实际上就是由内建构造器Object()函数所创建
+    var o = {}
+    console.log(o.constructor)
+
+
+    // 4.1.10 instanceof操作符
+    // 通过instanceof操作符，可以测试一个对象是不是由某个指定的构造器函数所创建的
+    console.log(h2 instanceof Hero1)
+    console.log(h2 instanceof Object)
+
+    // 4.1.11 返回对象的函数
+    // 除了使用new操作符调用构造器函数以外，也可以用一般函数来创建对象。这需要一个能执行某些预备工作，并以对象为返回值的函数
+    function factory(name) {
+      return {
+        name: name
+      }
+    }
     
+    const o1 = factory("one")
+    console.log("o1: ", o1)
+    console.log("o1.name: ", o1.name)
+
+    // 4.1.12 传递对象
+    // 当拷贝某个对象或将它传递给某个函数时，一般传递的都是该对象的引用。
+    // 因此我们在引用上所做的任何改动，实际上都会影响它所引用的原对象
+    let original = {howmany: 1}
+    let copy = original
+    console.log("copy.howmany: ", copy.howmany)
+    copy.howmany = 100
+    console.log("original.howmany: ", original.howmany)
+
+    // 同样的，将对象传递给函数的情况也大抵如此
+    let original1 = {howmany: 100}
+    let nullify = function(o) { o.howmany = 0}
+    nullify(original1)
+    console.log("original1.howmany: ", original1.howmany)
+
+    // 4.1.13 对象比较
+    // 当进行对象比较操作时，当且仅当两个引用指向同一个对象时为true
+    // 如果是不同对象，即使碰巧拥有相同的属性和方法，比较操作符也会返回false
+    let fido = {breed: "dog"}
+    let benji = {breed: "dog"}
+    console.log(benji == fido)
+    console.log(benji === fido)
   </script>
 </body>
 </html>
