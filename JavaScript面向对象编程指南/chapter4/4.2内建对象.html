@@ -164,14 +164,98 @@
     // 所以可以通过arguments.callee属性来实现匿名函数的递归调用
     function f2(count) {
       if (count < 5) {
-        alert(count);
+        // alert(count);
         arguments.callee(++count)
       }
     }
     f2(1)
 
     // 4.2.4 Boolean
+    // Boolean()构造器
+    var b = new Boolean()  // 这里b是一个对象，不是一个基本数据类型的布尔值
+    // 如果想将b转换为基本数据类型的布尔值，可调用它的valueOf()方法（继承自Object对象）
+    console.log(typeof b.valueOf())
+    console.log(b.valueOf())
+    // Boolean()构造器创建的对象并没有什么实用性，因为它并没有提供来自父级对象以外的任何方法和属性
+
+    // Boolean()可以将一些非布尔值转换为布尔值(效果相当于两次取反)
+    console.log(Boolean("test"))  //true
+    // 所有由 new Boolean()语句创建的布尔对象都等于true
+    console.log(Boolean(new Boolean(false)))
+
+    // 4.2.5 Number
+    // Number()函数用法与Boolean类似
+    // 1.在被当作构造器函数时(即用于new对象)，会创建对象
+    // 2.在被当作一般函数时，会试图将任何值转换为数字，这与parseInt()或parseFloat()起到的作用相同
+    var n1 = new Number('12.12')
+    console.log("n1: ", n1)
+    console.log(typeof n1)
+
+    var n2 = Number("12.12")
+    console.log("n2: ", n2)
+    console.log(typeof n2)
+
+    // 在Number()函数中，有一些内置属性，它们不可更改
+    console.log(Number.MAX_VALUE)
+    console.log(Number.MIN_VALUE)
+    console.log(Number.POSITIVE_INFINITY)
+    console.log(Number.NEGATIVE_INFINITY)
+    console.log(Number.NaN)
+
+    // Number对象提供三个方法：toFixed()/toPrecision()/toExponential()
+    var n3 = new Number(123.456)
+    console.log(n3.toFixed(1))
+    // Number对象与其他对象一样，提供toString()方法，该对象的toString()方法有一个可选参数，默认值为10
+    var n4 = new Number(255)
+    console.log(n4.toString())
+    console.log(n4.toString(10))
+    console.log(n4.toString(16))
+    console.log(n4.toString(2))
+
+
+    // 4.2.6 String
+    // String对象实际上就是一个字符数组，其中包括用于每个字符的索引属性，以及整体的length属性
+
+    // 基本类型的字符串不是对象，因此不含有任何属性和方法，但JavaScript还是提供了一些将基本字符串类型转换为String对象的语法
+    // 下面示例中，当一个基本字符串当作对象使用时，后台会相应的创建String对象，调用完之后又把String对象立即销毁
+    console.log("potato".length)
+    console.log("tomato"[0])
+    console.log("potato"["potato".length-1])
+
+    // 基本字符串和String对象之间的另一个区别：当它们被转换成布尔值时，尽管空字符串属于falsy值，但所有String对象都是truthy值
+    console.log(Boolean(""))
+    console.log(Boolean(new String("")))
+
+    // 与Number()和Boolean()类似，如果不通过new操作符调用String()，它就会试图将其参数转换为一个基本字符串
+    console.log(String(1))
+    console.log(typeof String(1))
+    // 如果其参数时对象的话，就等于调用该对象的toString()方法
+    console.log(String({p:1}))
+    console.log(String([1, 2, 3]))
+    console.log(typeof String([1, 2, 3]))
+    console.log(String([1, 2, 3]) === [1, 2, 3].toString())
+
     
+    // 4.2.7 Math
+    // 与之前的全局内建对象不同，Math对象不是函数对象，不能对它调用new操作符
+    // 实际上Math只是一个包含一系列方法和属性、用于数学计算的全局内建对象
+
+
+    // 4.2.8 Date
+    // 用于创建Date对象的构造器函数
+
+
+    // 4.2.10 Error对象
+    // JavaScript中，使用try、catch、finally语句组合来处理错误。finally是可选项，无论错误是否发生，都会执行finally当中的内容
+    // catch语句的参数e实际上是一个Error对象
+    // e.name所包含的是构造当前Error对象的构造器名称
+    try {
+      iDontExist()
+    } catch(e) {
+      console.log(e.name + ": ", e.message)
+    } finally {
+      console.log("finally")
+    }
 
   </script>
 </body>
