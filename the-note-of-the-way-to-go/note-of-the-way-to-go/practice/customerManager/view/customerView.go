@@ -55,7 +55,19 @@ func (this *customerView) add() {
 	if this.customerService.Add(customer) {
 		fmt.Println("----------添加完成----------\n")
 	} else {
-		fmt.Println("----------添加失败----------")
+		fmt.Println("----------添加失败----------\n")
+	}
+}
+
+func (this *customerView) delete() {
+	fmt.Println("------------删除客户------------")
+	fmt.Println("请输入要删除的Id：")
+	var Id int
+	fmt.Scanln(&Id)
+	if this.customerService.Delete(Id) {
+		fmt.Println("----------删除完成----------\n")
+	} else {
+		fmt.Println("----------删除失败----------\n")
 	}
 }
 
@@ -78,7 +90,7 @@ func (this *customerView) mainMenu() {
 			case "2":
 				fmt.Println("2")
 			case "3":
-				fmt.Println("3")
+				this.delete()
 			case "4":
 				 this.list()
 			case "5":

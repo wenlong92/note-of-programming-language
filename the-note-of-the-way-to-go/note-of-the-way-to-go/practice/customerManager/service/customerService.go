@@ -38,3 +38,9 @@ func (this *CustomerService) Add(customer model.Customer) bool {
 	this.customers = append(this.customers, customer)
 	return true
 }
+
+// 删除指定customers切片中指定的客户
+func (this *CustomerService) Delete(id int) bool {
+	this.customers = append(this.customers[:id-1], this.customers[id:]...)
+	return true
+}
