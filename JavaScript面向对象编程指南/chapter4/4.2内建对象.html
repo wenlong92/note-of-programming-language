@@ -164,7 +164,7 @@
     // 所以可以通过arguments.callee属性来实现匿名函数的递归调用
     function f2(count) {
       if (count < 5) {
-        // alert(count);
+        alert(count);
         arguments.callee(++count)
       }
     }
