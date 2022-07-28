@@ -39,8 +39,25 @@ func (this *CustomerService) Add(customer model.Customer) bool {
 	return true
 }
 
-// 删除指定customers切片中指定的客户
+// 根据id查找客户在切片中对应下标，如果没有该客户，返回-1
+func (this *CustomerService) FindById(id int) int {
+	index := -1
+	// 遍历
+	for i := 0; i < len(this.customers); i++ {
+		if this.customers[i].Id == id {
+			index = i
+		}
+	}
+	return index
+}
+
+// 根据id删除客户(从切中删除)
 func (this *CustomerService) Delete(id int) bool {
-	this.customers = append(this.customers[:id-1], this.customers[id:]...)
-	return true
+	index := this.FindById(id)
+	if index == -1 {
+		return false
+	} else {
+		this.customers = append(this.customers[:index], this.customers[index+1:]...)
+		return true
+	}
 }

@@ -59,15 +59,24 @@ func (this *customerView) add() {
 	}
 }
 
+// 得到用户输入的id，删除该id对应的客户
 func (this *customerView) delete() {
 	fmt.Println("------------删除客户------------")
-	fmt.Println("请输入要删除的Id：")
-	var Id int
-	fmt.Scanln(&Id)
-	if this.customerService.Delete(Id) {
-		fmt.Println("----------删除完成----------\n")
-	} else {
-		fmt.Println("----------删除失败----------\n")
+	fmt.Println("请选择待删除客户编号(-1退出)：")
+	id := -1
+	fmt.Scanln(&id)
+	if id == -1 {
+		return // 放弃删除操作
+	}
+	fmt.Println("确认是否删除(Y/N)：")
+	choice := ""
+	fmt.Scanln(&choice)
+	if choice == "Y" || choice == "y" {
+		if this.customerService.Delete(id) {
+			fmt.Println("----------删除完成----------\n")
+		} else {
+			fmt.Println("----------删除失败，输入的id不存在----------\n")
+		}
 	}
 }
 
