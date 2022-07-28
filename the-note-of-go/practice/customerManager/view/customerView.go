@@ -80,6 +80,22 @@ func (this *customerView) delete() {
 	}
 }
 
+// 退出软件
+func (this *customerView) exit() {
+	fmt.Println("确认是否推出(Y/N):")
+	for {
+		fmt.Scanln(&this.key)
+		if this.key == "y" || this.key == "Y" || this.key == "n" || this.key == "N" {
+			break
+		} else {
+			fmt.Println("你的输入有误，确认是否退出(Y/N):")
+		}
+	}
+	if this.key == "y" || this.key == "Y" {
+		this.loop = false
+	}
+}
+
 // 显示主菜单
 func (this *customerView) mainMenu() {
 	for {
@@ -103,7 +119,7 @@ func (this *customerView) mainMenu() {
 			case "4":
 				 this.list()
 			case "5":
-				this.loop = false
+				this.exit()
 			default:
 				fmt.Println("你的输入有误，请重新输入...")
 		}
