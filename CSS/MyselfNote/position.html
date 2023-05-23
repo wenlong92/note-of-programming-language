@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<div>
+  CSS两个最重要的基本属性display和position
+</div>
+<br>
+<div>
+  一共有五种定位方式，position属性主要有五个值
+  <ol>
+    <li>static</li>
+    <li>relative</li>
+    <li>fixed</li>
+    <li>absolute</li>
+    <li>sticky</li>
+  </ol>
+</div>
+<br>
+<div>
+  <h3>static属性值</h3>
+  <div>
+    static是position属性的默认值
+  </div>
+  <div>
+    浏览器会按照源码的顺序，决定每个元素的位置，称为”正常的页面流“。每个块级元素占据自己的区块，元素与元素之间不产生重叠，这个位置就是元素的默认位置。
+  </div>
+  <div>
+    static定位所导致的元素位置，是浏览器自主决定的，这时top、bottom、left、right四个属性无效
+  </div>
+</div>
+<br>
+
+<div>
+  <h3>relative、absolute、fixed</h3>
+  <div>relative、absolute、fixed这三个属性值有一个共同点，都是相对于某个基点的定位，不同之处仅仅在于基点不同。</div>
+  <div>这三种定位都不会对其他元素产生影响，因此元素之间可能产生重叠。</div>
+  <br>
+
+  <h4>relative属性值</h4>
+  <div>relative相对于默认位置（static）进行偏移，也就是定位基点是元素的默认位置。</div>
+  <div>必须搭配top、bottom、left、right四个属性一起使用，指定偏移方向和距离。</div>
+  <div class="relative-demo1"></div>
+  <div class="relative-demo2"></div>
+
+  <br>
+  <h4>absolute属性值</h4>
+  <div>相对于上级元素（一般是父级元素）进行便宜，即定位基点是父元素</div>
+  <div>一个重要限制条件：定位基点不能使static定位，否则定位基点会变成整个网页的根元素html。</div>
+  <div>另外，absolute定位必须搭配top、bottom、left、right四个属性一起使用</div>
+  <div>注意：absolute定位的元素会被”正常页面流“忽略，在“正常页面流”中，该元素所占空间为零，周边元素不受影响</div>
+  <div class="absolute-father">
+    <div class="absolute-son"></div>
+  </div>
+</div>
+
+<br>
+<h4>fixed属性值</h4>
+<div>相对于视口（viewport，浏览器窗口）进行偏移，定位基点是浏览器窗口。这会导致元素的位置不随页面滚动而变化，像是固定在网页上一样。</div>
+<div>如果搭配top、bottom、left、right四个属性使用，表示元素的初始位置是基于视口计算的，否则初始位置就是元素的默认位置</div>
+<div class="fixed-demo1"></div>
+<body>
+  
+</body>
+<style>
+  .relative-demo1 {
+    background-color: black;
+    width: 20px;
+    height: 20px;
+  }
+  .relative-demo2 {
+    position: relative;
+    background-color: pink;
+    width: 20px;
+    height: 20px;
+    left: 5px;
+  }
+  .absolute-father {
+    background-color: black;
+    position: relative;
+    width: 50px;
+    height: 50px;
+  }
+  .absolute-son {
+    background-color: pink;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 5px;
+  }
+  .fixed-demo1 {
+    background-color: green;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    top: 50px;
+  }
+</style>
+</html>
