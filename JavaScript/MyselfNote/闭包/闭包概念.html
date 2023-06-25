@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <a href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">阮一峰：学习Javascript闭包（Closure）</a>
+  </div>
+  
+</body>
+<script>
+  // 函数内部可以直接读取全局变量
+  var n1 = "n1"
+  function f1() {
+    alert(n1)
+  }
+  f1()
+  // 另一方面函数外部无法读取函数内部局部变量
+  // function f2() {
+  //   var n2 = "n2"
+  // }
+  // alert(n2)
+
+  // 二、外部读取局部变量
+  function f3() {
+    var n3 = "n3"
+    function f4() {
+      alert(n3)
+    }
+    return f4;
+  }
+  let result3 = f3()
+  result3()
+  // 三、闭包就是能够读取其他函数内部变量的函数
+
+  // 四、用途：一个是读取函数内部变量，另一个是让变量的值始终保持在 内存中
+  function f5() {
+    let n5 = 9;
+    nAdd = function() {n5 += 1}
+    function f6() {
+      alert(n5)
+    }
+    return f6;
+  }
+  let result5 = f5()
+  result5()
+  nAdd()
+  result5()
+  // f6被赋给了一个全局变量，导致f6 一直在内存中，而 f5 是 f6 的父函数，因此 f5 也一直在内存中
+  // nAdd 函数咩有使用 let 关键字，因此是一个全局变量。其次他还是个匿名函数，而这个匿名函数本身也是个闭包
+
+
+  var name = "The Window";
+
+  var object = {
+    name: "My Object",
+
+    getNameFunc: function () {
+      return function () {
+        return this.name;
+      };
+    }
+  };
+  alert(object.getNameFunc()());
+
+  
+</script>
+
+</html>

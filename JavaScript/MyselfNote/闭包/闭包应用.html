@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <a href="https://www.bilibili.com/video/BV1gM4y1y7bt/?spm_id_from=333.337.search-card.all.click&vd_source=aec5593a82abd7aa60b7a729c17d1416">B 站 ：闭包的应用</a>
+  </div>
+</body>
+<script>
+  // 闭包的应用：
+  // 1.实现模块化
+  const myModule = (function() {
+    let count = 0;
+    function increment() {
+      count ++;
+    }
+    function reset() {
+      count = 0;
+    }
+    function getCount() {
+      return count
+    }
+    return {
+      increment,
+      reset,
+      getCount
+    }
+  })();
+  myModule.increment();
+  console.log("模块化 1",myModule.getCount())
+  myModule.reset()
+  console.log("模块化2",myModule.getCount())
+
+
+  // 2.缓存函数
+  function memoize(fn) {
+    const cache = {}
+
+    return function(arg) {
+      if (arg in cache) {
+        return cache[arg]
+      } else {
+        const result = fn(arg);
+        cache[arg] = result;
+        return result
+      }
+    }
+  }
+
+  function expensiveCalculation(num) {
+    console.log("正在计算 " + num + " 的阶乘...")
+    let result = 1;
+    for(let i = 2; i <= num; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  const memoizedCalculation = memoize(expensiveCalculation);
+  console.log(memoizedCalculation(5))
+  console.log(memoizedCalculation(5))
+
+  // 3.封装私有变量
+  function createPerson(name, age) {
+    let privateName = name;
+    let privateAge = age;
+    function getName() {
+      return privateName
+    }
+    function setName(newName) {
+      privateName = newName
+    }
+    function getAge() {
+      return privateAge;
+    }
+    function setAge(newAge) {
+      privateAge = newAge
+    }
+    return {
+      getName,
+      setName,
+      getAge,
+      setAge
+    }
+  }
+  const person = createPerson("张三", 25);
+  console.log(person.getName())
+  console.log(person.getAge())
+
+  person.setName('李四')
+  person.setAge(30)
+  console.log(person.getName())
+  console.log(person.getAge())
+
+  // 4.实现函数柯里化
+  function add(a, b, c, d) {
+    return a + b + c + d;
+  }
+  function curry(fn) {
+    return function curried(...args) {
+      if(args.length >= fn.length) {
+        return fn.apply(this, args)
+      } else {
+        return function(...moreArgs) {
+          return curried.apply(this, args.concat(moreArgs))
+        }
+      }
+    }
+  }
+  const curriedAdd = curry(add)
+  console.log(curriedAdd(1)(2)(3)(4))
+  console.log(curriedAdd(1,2)(3,4))
+  console.log(curriedAdd(1,2,3,4))
+
+  // 5.防抖和节流
+  function debounce(fn, wait) {
+    let timeoutId
+    return function(...args) {
+      timeoutId = setTimeout(() => {
+        fn.apply(this, args);
+      }, wait)
+    }
+  }
+  function throttle(fn, wait) {
+    let isThrottled = false;
+    return function(...args) {
+      if(!isThrottled) {
+        isThrottled = true;
+        setTimeout(() => {
+          fn.apply(this, args);
+          isThrottled = false;
+        },wait)
+      }
+    }
+  }
+  function handleInput() {
+    console.log('input changed')
+  }
+  const debouncedHandleInput = debounce(handleInput, 500)
+  const throttledHandleInput = throttle(handleInput, 500)
+
+  document.querySelector('input').addEventListener('input', debouncedHandleInput)
+  document.querySelector('button').addEventListener('click', throttledHandleInput)
+</script>
+</html>
