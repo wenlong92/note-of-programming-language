@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 规则1：块级元素中能写：行内元素、块级元素（几乎什么都能写） -->
+
+
+  <!-- 规则2：行内元素中能写：行内元素，但不能写：块级元素 -->
+  <span id="1">
+    <span>span1</span>
+    <input type="text">
+    <span>span2</span>
+    <div>div1</div>
+  </span>
+  <span id="3">span3</span><!-- 正常来说 id1 的 span 和 id3 的 span 是并列关系，但因为 id1 的 span 标签包含了块级元素 div，所以使得在浏览器中 id1 的 span 包含了 id3 的 span，这样会使调整 css 时出现错乱 -->
+
+
+  <!-- 特殊规则：h1-h6不能相互嵌套 -->
+  <h1>title one <h6>title six</h6></h1>  <!-- 这是错误例子 -->
+
+
+  <!-- 特殊规则：p 标签中不要写块级元素 -->
+  <p>
+    p 标签
+    <div> div </div>
+  </p>   <!-- 错误例子 -->
+</body>
+</html>
