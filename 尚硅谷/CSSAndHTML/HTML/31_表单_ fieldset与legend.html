@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- fieldset 为表单控件分组，legend 标签是分组的标题 -->
+  <form action="https://search.jd.com/search">
+    <fieldset>
+      <legend>主要信息</legend>
+      <label for="zhanghu">账号：</label><input id="zhanghu" type="text" name="account" maxlength="10"><br>
+      <label>
+        密码：<input type="password" name="pwd" value="123" maxlength="6">
+      </label><br>
+      性别：
+      <input type="radio" name="gender" value="male">男
+      <input type="radio" name="gender" value="female" >女
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>附加信息</legend>
+      爱好：
+      <input type="checkbox" name="hobby" value="smoke">抽烟
+      <input type="checkbox" name="hobby" value="drink">喝酒
+      <input type="checkbox" name="hobby" value="perm">烫头
+      <br>
+      其他：
+      <textarea name="other" id="" cols="20" rows="3"></textarea>
+      <br>
+      籍贯：
+      <select name="place">
+        <option value="山东">山东</option>
+        <option value="河北">河北</option>
+        <option value="河南">河南</option>
+      </select>
+    </fieldset>
+    <br>
+    <!-- 隐藏域 -->
+    <input type="hidden" name="tag" value="123">
+    <!-- 确认按钮_第一种写法 -->
+    <!-- <button>确认</button> -->
+    <!-- 确认按钮_第二种写法 -->
+    <input type="submit" value="确认">
+
+    <!-- 重置按钮_第一种写法 -->
+    <!-- <button type="reset">重置按钮</button> -->
+    <!-- 重置按钮_第二种写法 -->
+    <input type="reset" value="点击重置">
+
+    <!-- 普通按钮_第一种写法 -->
+    <!-- <button type="button">检测账户是否被注册</button> -->
+    <!-- 普通按钮_第二种写法 -->
+    <input type="button" value="检测账户是否被注册">
+  </form>
+</body>
+</html>
