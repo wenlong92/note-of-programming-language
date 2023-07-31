@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*第一种写法：选中具有 title 属性的元素。 具有 title 属性的元素文字变红，所以‘尚硅谷 1’和‘尚硅谷 2’变红 */
+    [title] {
+      color: red;
+    }
+
+    /* 第二种写法： 选中具有 title 属性，且属性值未 demo3 的元素*/
+    [title='demo3'] {
+      color: green;
+    }
+
+    /* 第三种写法：选中具有 title 属性，且属性值以字母 t 开头的 */
+    [title^='t'] {
+      color: orange;
+    }
+
+    /* 第四种写法：选中具有 title 属性，且属性值以字母 o 结尾的 */
+    [title$='o'] {
+      color: pink;
+    }
+
+    /* 第五种写法：选中具有 title 属性，且属性值含有字母 p 的 */
+    [title*='p'] {
+      color: blue;
+    }
+
+  </style>
+</head>
+<body>
+  <div title="demo1">尚硅谷 1</div>
+  <div title="demo2">尚硅谷 2</div>
+  <div title="demo3">尚硅谷 3</div>
+  <div title="test1">尚硅谷 4</div>
+  <div title="test2">尚硅谷 5</div>
+  <div title="test3o">尚硅谷 6</div>
+  <div title="test4o">尚硅谷 7</div>
+  <div title="example1">尚硅谷 8</div>
+  <div title="example2">尚硅谷 9</div>
+</body>
+</html>
