@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 选中 div 儿子 p 元素，但排除类名为 fail 的元素 */
+    /* div>p:not(.fail) {
+      color: red;
+    } */
+
+
+    /* 选中 div 儿子 p 元素，但排除title 属性以 come on 开头的 */
+    /* div>p:not([title^="come on"]) {
+      color: green;
+    } */
+
+
+    /* 选中 div 儿子 p 元素，但排除第一个儿子 p 元素 */
+    div>p:not(:first-child) {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>张三：98 分</p>
+    <p>李四：88 分</p>
+    <p>王五：78 分</p>
+    <p>赵六：68 分</p>
+    <p class="fail" title="come on!">孙七：58 分</p>
+    <p class="fail" title="come on!">老八：48 分</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 偶数位都变红：2n或者 even */
+    /* div>p:nth-child(2n) {
+      color: red;
+    } */
+
+
+    /* 偶数位都变红：2n+1或者 odd */
+    /* div>p:nth-child(2n+1) {
+      color: red;
+    } */
+
+    /* 选中前五个 */
+    /* n取值从 0 一直到 length 长度，nth-child括号内实际是公式：an+b的形式 */
+    /* div>p:nth-child(-n+5) {
+      color: red;
+    } */
+
+    /* 结构 2 */
+    /* div>p:first-of-type {
+      color: red;
+    } */
+    /* div>p:last-of-type {
+      color: red;
+    } */
+    /* div>p:nth-of-type(3) {
+      color: red;
+    } */
+    div>p:nth-of-type(even) {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div>
+    <p>第1个</p>
+    <p>第2个</p>
+    <p>第3个</p>
+    <p>第4个</p>
+    <p>第5个</p>
+    <p>第6个</p>
+    <p>第7个</p>
+    <p>第8个</p>
+    <p>第9个</p>
+    <p>第10个</p>
+  </div> -->
+
+  <!-- 结构 2 -->
+  <div>
+    <span>测试</span>
+    <p>第1个</p>
+    <p>第2个</p>
+    <p>第3个</p>
+    <p>第4个</p>
+  </div>
+</body>
+</html>
