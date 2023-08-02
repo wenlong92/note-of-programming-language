@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 
+      权重计算，格式：(a, b, c)
+      a:ID 选择器的个数
+      b:类、伪类、属性选择器的个数
+      c:元素、伪元素选择器的个数
+
+      当 demo1 的 a 大于 demo2 的 a 时，说明demo1 权重比 demo2 大
+    */
+    .container span.slogan {
+      color: red;
+    }
+
+    div>p>span:first-child {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="container">
+      <p>
+        <span class="slogan">Lorem ipsum dolor sit amet.</span>
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, repellat iure beatae dolorum assumenda sapiente non alias atque praesentium corrupti.</span>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
