@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #d2 {
+      /* em:相对于当前元素或其父元素的 font-size 的倍数，如果没有就向上寻找，直至默认 font-size */
+      width: 10em;
+      height: 10em;
+      font-size: 20px;
+      background-color: orange;
+    }
+
+
+    /* rem:相对于根元素的 font-size 的倍数 */
+    #d3 {
+      width: 10rem;
+      height: 10rem;
+      font-size: 20px;
+      background-color: green;
+    }
+    
+    #d4 {
+      width: 200px;
+      height: 200px;
+      font-size: 20px;
+      background-color: gray;
+    }
+    .inside {
+      width: 50%;
+      height: 25%;
+      font-size: 20px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div id="d2">
+    2
+  </div>
+  <hr>
+  <div id="d3">
+    3
+  </div>
+
+  <hr>
+  <div id="d4">
+    <div class="inside">inside</div>
+  </div>
+</body>
+</html>
