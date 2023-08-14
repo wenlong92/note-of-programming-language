@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* margin 塌陷：第一个子元素的 margin-top 会作用在父元素身上，最后一个子元素的 margin-bottom 会作用的父元素身上 */
+    .outer {
+      width: 400px;
+      /* height: 400px; */
+      background-color: gray;
+      /* 解决 margin 塌陷比较好的方案，父元素添加 overflow：hidden */
+      overflow: hidden;
+    }
+    .inner1 {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      /* 以下代码有问题，未产生预期效果 */
+      margin-top: 50px;
+    }
+    .inner2 {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      /* 以下代码有问题 */
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="inner1">inner1</div>
+    <div class="inner2">inner2</div>
+  </div>
+  <div>测试代码</div>
+</body>
+</html>
