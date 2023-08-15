@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 产生原因：行内块元素与文本的基线对齐，而文本基线与文本最低端之间有一定距离 */
+    div {
+      width: 400px;
+      background-color: gray;
+      /* 解决方案三：父元素字体调整为 0，但子元素需要设置字体大小，不然子元素文字会消失 */
+      /* font-size: 0; */
+    }
+    img {
+      /* 解决方案一：修改 vertical-align的值，除了 baseline 都可以 */
+      vertical-align: bottom;
+      /* 解决方案二：修改 display 为 block，但有局限，后面的行内元素会换行 */
+      /* display: block; */
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="../悟空.jpg" alt=""><span>123</span>
+  </div>
+</body>
+</html>

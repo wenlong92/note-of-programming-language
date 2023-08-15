@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .outer {
+      width: 400px;
+      height: 400px;
+      background-color: gray;
+      padding: 10px;
+    }
+    .box {
+      font-size: 40px;
+      padding: 10px;
+    }
+    .box1 {
+      background-color: skyblue;
+    }
+    .box2 {
+      background-color: orange;
+      /* 此时 box2 浮动起来，脱离的文档流（飘起来）box2 下面实际上还是 box3 的背景色，
+         而 box2 没有覆盖 box3 文字的原因是因为 float 本身就是为文字环绕设定的，所以 box3 的文字环绕在 box2 的周围。
+         浮动后的元素宽高靠着内容支撑，可以设置明确的宽高
+      */
+      float: left;
+    }
+    .box3 {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <!-- float 的初衷是文字环绕图片或者文字环绕文字 -->
+  <div class="outer">
+    <div class="box box1">box1</div>
+    <div class="box box2">box2</div>
+    <div class="box box3">box3</div>
+  </div>
+</body>
+</html>

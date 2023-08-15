@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 解决元素之间空白问题：在父元素添加 font-size：0px，但要在子元素设置字体大小，不然子元素文字会消失 */
+    div {
+      background-color: gray;
+      height: 200px;
+      font-size: 0px;
+    }
+    .s1 {
+      background-color: green;
+    }
+    .s2 {
+      background-color: orange;
+    }
+    span,img {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span class="s1">hello</span>
+    <span class="s2">world</span>
+    <hr>
+    <img src="../video.gif" alt="">
+    <img src="../video.gif" alt="">
+  </div>
+</body>
+</html>
