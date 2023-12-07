@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let user = { // 属于另一个代码
+  name: "John"
+};
+
+let id = Symbol("id");
+
+user[id] = 1;
+
+alert( user[id] ); // 我们可以使用 symbol 作为键来访问数据
+
+for (key in user) {
+  console.log({key})
+}
+  
+  </script>
+</body>
+</html>
